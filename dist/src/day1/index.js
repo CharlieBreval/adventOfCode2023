@@ -25,32 +25,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.day1 = void 0;
 const fs = __importStar(require("fs"));
-const findFirstAndLastDigit = (text) => {
-    const regex = /(\d)/g;
-    const result = text.match(regex);
-    if (!result) {
-        return null;
-    }
-    const firstDigit = result === null || result === void 0 ? void 0 : result.shift();
-    const lastDigit = result.length > 0 ? result === null || result === void 0 ? void 0 : result.pop() : firstDigit;
-    return {
-        first: firstDigit,
-        last: lastDigit,
-    };
-};
 const day1 = () => {
-    const fileContent = fs.readFileSync("src/day1/example1.txt", {
-        encoding: "utf8",
-    });
-    const lines = fileContent.split("\n");
-    const sum = lines.reduce((acc, line) => {
-        const firstAndLastDigit = findFirstAndLastDigit(line);
-        const numberForLine = `${firstAndLastDigit === null || firstAndLastDigit === void 0 ? void 0 : firstAndLastDigit.first}${firstAndLastDigit === null || firstAndLastDigit === void 0 ? void 0 : firstAndLastDigit.last}`;
-        if (!numberForLine) {
-            return acc;
-        }
-        return parseInt(numberForLine, 10) + acc;
-    }, 0);
-    console.log(sum);
+    const fileContent = fs.readFileSync('../../src/day1/example1.txt');
+    console.log(fileContent);
 };
 exports.day1 = day1;
