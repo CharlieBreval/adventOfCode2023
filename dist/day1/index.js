@@ -25,14 +25,34 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.day1 = void 0;
 const fs = __importStar(require("fs"));
+const mappingArray = {
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+};
+const mapStringToInt = (text) => {
+    const keys = Object.keys(mappingArray);
+    if (keys.includes(text)) {
+        return mappingArray[text];
+    }
+    return parseInt(text);
+};
 const findFirstAndLastDigit = (text) => {
-    const regex = /(\d)/g;
+    const regex = /(\d)|(one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)/g;
     const result = text.match(regex);
     if (!result) {
         return null;
     }
-    const firstDigit = result === null || result === void 0 ? void 0 : result.shift();
-    const lastDigit = result.length > 0 ? result === null || result === void 0 ? void 0 : result.pop() : firstDigit;
+    const firstDigitRaw = result[0];
+    const firstDigit = mapStringToInt(firstDigitRaw);
+    const lastDigitRaw = result.length >= 2 ? result[result.length - 1] : firstDigit.toString();
+    const lastDigit = mapStringToInt(lastDigitRaw);
     return {
         first: firstDigit,
         last: lastDigit,
@@ -49,7 +69,7 @@ const day1 = () => {
         if (!numberForLine) {
             return acc;
         }
-        return parseInt(numberForLine, 10) + acc;
+        return parseInt(numberForLine) + acc;
     }, 0);
     console.log(sum);
 };
