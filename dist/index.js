@@ -1,4 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const day1_1 = require("./day1");
-(0, day1_1.day1)();
+const part2_1 = require("./day2/part2");
+// day1();
+(0, part2_1.day2)();
