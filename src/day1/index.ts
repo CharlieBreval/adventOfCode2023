@@ -22,20 +22,24 @@ const mapStringToInt = (text: string) => {
 };
 
 const findFirstAndLastDigit = (text: string) => {
-  const regex =
-    /(\d)|(one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)/g;
-  const result = text.match(regex);
+  const regex = /(?=(\d|one|two|three|four|five|six|seven|eight|nine))/g;
+  const result = text.matchAll(regex);
 
-  if (!result) {
+  const resultArray = Array.from(result, (data) => {
+    return data[1];
+  });
+
+  if (!resultArray) {
     return null;
   }
 
-  const firstDigitRaw = result[0];
+  const firstDigitRaw = resultArray[0];
   const firstDigit = mapStringToInt(firstDigitRaw);
 
   const lastDigitRaw =
-    result.length >= 2 ? result[result.length - 1] : firstDigit.toString();
+  resultArray.length > 1 ? resultArray[resultArray.length - 1] : firstDigit.toString();
   const lastDigit = mapStringToInt(lastDigitRaw);
+
   return {
     first: firstDigit,
     last: lastDigit,
@@ -48,12 +52,17 @@ export const day1 = () => {
   });
 
   const lines = fileContent.split("\n");
+  let i = 1;
   const sum = lines.reduce((acc, line) => {
     const firstAndLastDigit = findFirstAndLastDigit(line);
-    const numberForLine = `${firstAndLastDigit?.first}${firstAndLastDigit?.last}`;
-    if (!numberForLine) {
+    if (firstAndLastDigit === null) {
       return acc;
     }
+
+    const numberForLine = `${firstAndLastDigit?.first}${firstAndLastDigit?.last}`;
+    console.log(i);
+    i++;
+    console.log(numberForLine);
 
     return parseInt(numberForLine) + acc;
   }, 0);

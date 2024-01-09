@@ -44,14 +44,17 @@ const mapStringToInt = (text) => {
     return parseInt(text);
 };
 const findFirstAndLastDigit = (text) => {
-    const regex = /(\d)|(one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)/g;
-    const result = text.match(regex);
-    if (!result) {
+    const regex = /(?=(\d|one|two|three|four|five|six|seven|eight|nine))/g;
+    const result = text.matchAll(regex);
+    const resultArray = Array.from(result, (data) => {
+        return data[1];
+    });
+    if (!resultArray) {
         return null;
     }
-    const firstDigitRaw = result[0];
+    const firstDigitRaw = resultArray[0];
     const firstDigit = mapStringToInt(firstDigitRaw);
-    const lastDigitRaw = result.length >= 2 ? result[result.length - 1] : firstDigit.toString();
+    const lastDigitRaw = resultArray.length > 1 ? resultArray[resultArray.length - 1] : firstDigit.toString();
     const lastDigit = mapStringToInt(lastDigitRaw);
     return {
         first: firstDigit,
@@ -63,12 +66,16 @@ const day1 = () => {
         encoding: "utf8",
     });
     const lines = fileContent.split("\n");
+    let i = 1;
     const sum = lines.reduce((acc, line) => {
         const firstAndLastDigit = findFirstAndLastDigit(line);
-        const numberForLine = `${firstAndLastDigit === null || firstAndLastDigit === void 0 ? void 0 : firstAndLastDigit.first}${firstAndLastDigit === null || firstAndLastDigit === void 0 ? void 0 : firstAndLastDigit.last}`;
-        if (!numberForLine) {
+        if (firstAndLastDigit === null) {
             return acc;
         }
+        const numberForLine = `${firstAndLastDigit === null || firstAndLastDigit === void 0 ? void 0 : firstAndLastDigit.first}${firstAndLastDigit === null || firstAndLastDigit === void 0 ? void 0 : firstAndLastDigit.last}`;
+        console.log(i);
+        i++;
+        console.log(numberForLine);
         return parseInt(numberForLine) + acc;
     }, 0);
     console.log(sum);
