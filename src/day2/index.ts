@@ -53,6 +53,7 @@ export const day2 = () => {
   });
 
   const lines = fileContent.split("\n");
+
   const filteredLines = lines.filter((line) => {
     const [gameId, lineContent] = line.split(":");
     const sets = lineContent.split(";");
