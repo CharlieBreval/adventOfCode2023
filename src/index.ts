@@ -7,7 +7,8 @@
 // import { day6 } from './day6';
 // import { day6 } from './day6/step2';
 // import { day8 } from './day8';
-import { day9 } from './day9';
+// import { day9 } from './day9';
+import { day10 } from './day10';
 
 // day1();
 // day2();
@@ -17,4 +18,5 @@ import { day9 } from './day9';
 // day6();
 // day7();
 // day8();
-day9();
+// day9();
+day10();
