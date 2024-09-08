@@ -1,14 +1,15 @@
-// import { day1 } from './day1'
 // import { day2 } from './day2/part2';
-// import { day3 } from './day3';
+// import { day1 } from './day1'
 // import { day4 } from './day4';
+// import { day3 } from './day3';
 // import { day5 } from './day5';
 // import { day5 } from './day5/step2';
 // import { day6 } from './day6';
 // import { day6 } from './day6/step2';
 // import { day8 } from './day8';
 // import { day9 } from './day9';
-import { day10 } from './day10';
+// import { day10 } from './day10';
+import { day11 } from './day11';
 
 // day1();
 // day2();
@@ -19,4 +20,5 @@ import { day10 } from './day10';
 // day7();
 // day8();
 // day9();
-day10();
+// day10();
+day11();
